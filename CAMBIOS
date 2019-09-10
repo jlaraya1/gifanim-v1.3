@@ -1,0 +1,32 @@
+﻿==========================================================================================
+       ***Rutina para la generación de un archivo ".gif" animado en tiempo real***
+==========================================================================================
+Instituto Meteorológico Nacional
+Departamento de Redes y Procesamiento de Datos
+Programado por: José Luis Araya López.
+Contacto: jlaraya1@gmail.com
+
+============================================================================
+                           ***Control de cambios***
+============================================================================
+Version 1.1
+Fecha: 3 de octubre del 2011.
+Realizacion del programa.
+-----------------------------------------------------------------------------
+Version 1.2
+Fecha: 6 de octubre del 2011
+Se incorpora carpeta "fotos3" para generar un gif animado de menor resolucion.
+
+Se efectua una correccion a la forma en la que es generada la lista, la cual
+no daba de forma correcta los ultimos archivos del directorio bajo ciertas 
+condiciones.
+-----------------------------------------------------------------------------
+Version 1.3
+
+Fecha: 7 de febrero del 2012
+
+Se modifican rutinas "ejecute.py" y "gifanimn.py" para especificar la extension
+de los archivos de imagen. Tomar en cuenta cuando dichas extensiones son minùsculas
+o mayùsculas.
+-----------------------------------------------------------------------------
+

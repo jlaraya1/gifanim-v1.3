@@ -1,0 +1,73 @@
+﻿==========================================================================================
+       ***Rutina para la generación de un archivo ".gif" animado en tiempo real***
+==========================================================================================
+Instituto Meteorológico Nacional
+Departamento de Redes y Procesamiento de Datos
+Programado por: José Luis Araya López.
+Contacto: jlaraya1@gmail.com
+
+==========================================================================================
+Fecha ultima actualización de este documento: 7 de febrero del 2011
+Versión: 1.3
+===========================================================================================
+ADVERTENCIA: ESTE PROGRAMA SE OFRECE BAJO EL ESPIRITU DE LOS PAQUETES DE LIBRE DISTRIBUCION,
+SIN GARANTIA DE CUALQUIER CLASE, EXPLICITA O IMPLICITAMENTE, INCLUYENDO PERO NO LIMITADA A 
+GARANTIAS DE MERCANTIBILIDAD, O QUE SIRVA PARA ALGUN PROPOSITO ESPECIFICO. EN NINGUN CASO 
+DEBE EL AUTOR SER CULPABLE POR ALGUN RECLAMO, DAÑO O OTRO PROBLEMA QUE CUALQUIER USUARIO 
+TENGA, EL CUAL DEBE USAR ESTA HERRAMIENTA BAJO SU PROPIA RESPONSABILIDAD.
+
+
+1. INTRODUCCION: Esta rutina fue desarrollada con el fin de proveer a
+una herramienta para la generación de una animación en tiempo real de un conjunto
+de imagenes. Para cualquier sugerencia de mejoramiento o extensión del mismo por favor comunicárselo al autor.
+
+2. REQUERIMIENTOS: Debe tener instalado Python y los módulos asociados siguientes:
+=============================================
+|  Python 2.6.3(linux) y 2.6.6 (windows)
+|  ImageMagick 7:6.6.2.6-1ubuntu1.1 y  6.7.2.9 (windows)
+=============================================  
+Estos programas se encuentran en /home/usuario/gifanimn/instalar. Este programa fue probado 
+para las versiones anteriores solamente, para los dos sistemas operativos. Descargue la rutina 
+y guardela en C:\ (windows) o en /home/usuario/ (linux).
+
+3. CONFIGURACION PREVIA: Corra de forma rutinaria gifanimn.py. Las imágenes con las que se 
+genera la animación debe haber sido cargada previamente en /home/usuario/gifanimn/fotos.
+
+Para poner en operación de forma automática la rutina en Linux debe programar que el archivo rutina sea ejecutado en los momentos en que desea que se genere una nueva animación. Este se encuentra ubicado en /home/usuario/gifanim/. En el sistema operativo windows requiere usar la rutina ejecutar.bat.  Puede regularizar su operación a través de una tarea programada del sistema, o bien a travez de una tarea de LoggerNet.
+
+
+4. ESTRUCTURA DEL PROGRAMA: 
+
+Este programa consta de tres rutinas:
+
+     a) gifanimn.pyc
+     b) ejecute.py
+     c) ejecute.bash (linux)
+        ejecutar.bat  (windows)
+     
+Estos tres programas deben encontrarse en /home/usuario/gifanimn para que la aplicación funcione
+eficientemente, además, deben haber tres carpetas abiertas en esta misma dirección: "fotos" y "fotos2"y "fotos3". En la primera carpeta debe direccionarse las fotos que están llegando en tiempo real del dispositivo,sensor o sistema que las genere, el programa toma un número fijo de las ultimas imágenes generadas y crea el archivo ".gif". En "fotos3" tiene la opcion de espe-
+cificar otro gif animado con otra cantidad de fotografias. Para ambos casos esto se define en "ejecute.py":
+
+gifanimn(numero de imagenes 1,numero de imagenes 2,".extension")
+Nòtese que ".extension" es la extensiòn de los archivos de imagenes, respetando si se trata de 
+minùscula o mayùscula. Puede que requiera modificar junto con esto los comandos de "ejecute.batch" o "ejecutar.bat".
+
+Puede indicar el número de imágenes en
+retrospectiva que debe contener la animación modificando el número de imágenes que se generan en el archivo ejecute.py. Note que el número de imagenes que especifica en "ejecute.py" debe ser
+siempre mayor o igual que las que se indican en los programas "ejecute.batch" o "ejecutar.bat".
+Para el segundo parametro las imagenes son generadas a una resolucion inferior.
+
+5. NOTAS SOBRE ERRORES Y COMO CORREGIRLOS
+
+a) Error de extension de archivos en ImageMagick
+
+El 7/2/2012 se presentò el siguiente error: 
+
+jlaraya@jlaraya:~/gifanimn$ cd fotos2
+jlaraya@jlaraya:~/gifanimn/fotos2$ convert -delay 50 *.JPG  anim_largo.gif
+convert: unable to open image `*.JPG': /usr/lib/ImageMagick-6.6.0/modules-Q16/coders/jpeg.la @ error/blob.c/OpenBlob/2489.
+
+En Linux el problema se corrige al notar que para imagemagick no es lo mismo .JPG que .jpg en minùscula, de alli que esto debe de tomarse en cuenta cuando el bash ejecuta el comando "convert". En este ejemplo las imagenes eran .jpg, y al estar aqui *.JPG pues habia un conflicto. Debe tenerse
+cuidado con eso y recordar que imagemagick es sensible a las terminaciones con minùscula o mayùscula, como se ve en el ejemplo anterior. Esto se modifica en "ejecute.bash".
+
